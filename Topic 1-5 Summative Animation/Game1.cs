@@ -4,6 +4,12 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Topic_1_5_Summative_Animation
 {
+    enum screen
+    {
+        Intro,
+        Road,
+        End
+    }
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
