@@ -13,7 +13,7 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin black-car.png
+#begin blackCar.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -23,7 +23,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:black-car.png
+/build:blackCar.png
 
 #begin highway.png
 /importer:TextureImporter
@@ -37,7 +37,14 @@
 /processorParam:TextureFormat=Color
 /build:highway.png
 
-#begin red-car.png
+#begin IntroFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:IntroFont.spritefont
+
+#begin redCar.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -47,7 +54,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:red-car.png
+/build:redCar.png
 
 #begin traffic.jfif
 /importer:TextureImporter

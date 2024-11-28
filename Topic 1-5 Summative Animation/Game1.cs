@@ -27,7 +27,11 @@ namespace Topic_1_5_Summative_Animation
 
         Texture2D trafficTexture;
 
+        SpriteFont introFont;
+
         screen screen;
+
+        MouseState mouseState;
 
         public Game1()
         {
@@ -54,16 +58,22 @@ namespace Topic_1_5_Summative_Animation
 
             // TODO: use this.Content to load your game content here
             highwayTexture = Content.Load<Texture2D>("highway");
-            highwayTexture = Content.Load<Texture2D>("highway");
-            blackCarTexture = Content.Load<Texture2D>("black-car");
-            redCarTexture = Content.Load<Texture2D>("red-car");
+            trafficTexture = Content.Load<Texture2D>("traffic");
+            blackCarTexture = Content.Load<Texture2D>("blackCar");
+            redCarTexture = Content.Load<Texture2D>("redCar");
+            introFont = Content.Load<SpriteFont>("IntroFont");
         }
 
         protected override void Update(GameTime gameTime)
         {
+            mouseState = Mouse.GetState();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
+            if (screen == screen.Intro)
+            {
+                if (mouseState.LeftButton == ButtonState.Pressed)
+                    screen = screen.Road;
+            }
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -77,6 +87,11 @@ namespace Topic_1_5_Summative_Animation
             _spriteBatch.Begin();
 
             if (screen == screen.Intro)
+            {
+                _spriteBatch.Draw(trafficTexture, window, Color.Gray);
+                _spriteBatch.DrawString(introFont, "TRAFFIC JAM", new Vector2(265, 205), Color.Blue);
+            }
+            else if (screen == screen.Road)
             {
                 _spriteBatch.Draw(highwayTexture, window, Color.White);
             }
