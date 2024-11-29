@@ -44,6 +44,12 @@
 /processorParam:TextureFormat=Compressed
 /build:IntroFont.spritefont
 
+#begin IntroMusic.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:IntroMusic.mp3
+
 #begin redCar.png
 /importer:TextureImporter
 /processor:TextureProcessor
