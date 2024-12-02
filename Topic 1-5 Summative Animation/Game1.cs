@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Topic_1_5_Summative_Animation
 {
-    enum screen
+    enum Screen
     {
         Intro,
         Road,
@@ -19,20 +19,28 @@ namespace Topic_1_5_Summative_Animation
         Rectangle window;
 
         Texture2D blackCarTexture;
-        Rectangle blackCarRect;
+        Rectangle blackCarRect1;
+        Rectangle blackCarRect2;
+        Rectangle blackCarRect3;
+        Rectangle blackCarRect4;
         Vector2 blackCarSpeed;
 
         Texture2D redCarTexture;
-        Rectangle redCarRect;
+        Rectangle redCarRect1;
+        Rectangle redCarRect2;
+        Rectangle redCarRect3;
+        Rectangle redCarRect4;
         Vector2 redCarSpeed;
 
         Texture2D highwayTexture;
 
         Texture2D trafficTexture;
 
+        Texture2D wreckTexture;
+
         SpriteFont introFont;
 
-        screen screen;
+        Screen screen;
 
         MouseState mouseState;
 
@@ -49,10 +57,16 @@ namespace Topic_1_5_Summative_Animation
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            blackCarRect = new Rectangle(410, 500, 100, 150);
+            blackCarRect1 = new Rectangle(410, 500, 100, 150);
+            blackCarRect2 = new Rectangle(410, 800, 100, 150);
+            blackCarRect3 = new Rectangle(410, 1200, 100, 150);
+            blackCarRect4 = new Rectangle(540, 1450, 90, 150);
             blackCarSpeed = new Vector2(-2, -2);
 
-            redCarRect = new Rectangle(540, 450, 90, 150);
+            redCarRect1 = new Rectangle(540, 450, 90, 150);
+            redCarRect2 = new Rectangle(540, 950, 90, 150);
+            redCarRect3 = new Rectangle(540, 1450, 90, 150);
+            redCarRect4 = new Rectangle(410, 2000, 100, 150);
             redCarSpeed = new Vector2(-3, -3);
 
             window = new Rectangle(0, 0, 800, 600);
@@ -60,8 +74,9 @@ namespace Topic_1_5_Summative_Animation
             _graphics.PreferredBackBufferHeight = window.Height;
             _graphics.ApplyChanges();
 
-            screen = screen.Intro;
+            screen = Screen.Intro;
             base.Initialize();
+            introInstance.Play();
         }
 
         protected override void LoadContent()
@@ -83,16 +98,25 @@ namespace Topic_1_5_Summative_Animation
             mouseState = Mouse.GetState();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            if (screen == screen.Intro)
+            if (screen == Screen.Intro)
             {
                 if (mouseState.LeftButton == ButtonState.Pressed || introInstance.State == SoundState.Stopped)
-                    screen = screen.Road;
+                {
+                    screen = Screen.Road;
+                    introInstance.Stop();
+                }
             }
-            else if (screen == screen.Road)
+            else if (screen == Screen.Road)
             {
                 // TODO: Add your update logic here
-                blackCarRect.Y += (int)blackCarSpeed.Y;
-                redCarRect.Y += (int)redCarSpeed.Y;
+                blackCarRect1.Y += (int)blackCarSpeed.Y;
+                blackCarRect2.Y += (int)blackCarSpeed.Y;
+                blackCarRect3.Y += (int)blackCarSpeed.Y;
+                blackCarRect4.Y += (int)blackCarSpeed.Y;
+                redCarRect1.Y += (int)redCarSpeed.Y;
+                redCarRect2.Y += (int)redCarSpeed.Y;
+                redCarRect3.Y += (int)redCarSpeed.Y;
+                redCarRect4.Y += (int)redCarSpeed.Y;
             }
                 base.Update(gameTime);
         }
@@ -104,18 +128,24 @@ namespace Topic_1_5_Summative_Animation
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
 
-            if (screen == screen.Intro)
+            if (screen == Screen.Intro)
             {
                 _spriteBatch.Draw(trafficTexture, window, Color.Gray);
                 _spriteBatch.DrawString(introFont, "TRAFFIC JAM", new Vector2(265, 285), Color.Red);
                 _spriteBatch.DrawString(introFont, "CLICK   TO   PROCEED", new Vector2(195, 535), Color.Blue);
                 introInstance.Play();
             }
-            else if (screen == screen.Road)
+            else if (screen == Screen.Road)
             {
                 _spriteBatch.Draw(highwayTexture, window, Color.White);
-                _spriteBatch.Draw(blackCarTexture, blackCarRect, Color.White);
-                _spriteBatch.Draw(redCarTexture, redCarRect, Color.White);
+                _spriteBatch.Draw(blackCarTexture, blackCarRect1, Color.White);
+                _spriteBatch.Draw(blackCarTexture, blackCarRect2, Color.White);
+                _spriteBatch.Draw(blackCarTexture, blackCarRect3, Color.White);
+                _spriteBatch.Draw(blackCarTexture, blackCarRect4, Color.White);
+                _spriteBatch.Draw(redCarTexture, redCarRect1, Color.White);
+                _spriteBatch.Draw(redCarTexture, redCarRect2, Color.White);
+                _spriteBatch.Draw(redCarTexture, redCarRect3, Color.White);
+                _spriteBatch.Draw(redCarTexture, redCarRect4, Color.White);
             }
 
             _spriteBatch.End();
