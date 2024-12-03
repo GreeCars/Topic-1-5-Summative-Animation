@@ -25,6 +25,12 @@
 /processorParam:TextureFormat=Color
 /build:blackCar.png
 
+#begin CrashSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:CrashSound.mp3
+
 #begin highway.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -61,6 +67,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:redCar.png
+
+#begin RoadSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:RoadSound.mp3
 
 #begin traffic.jfif
 /importer:TextureImporter

@@ -47,6 +47,12 @@ namespace Topic_1_5_Summative_Animation
         SoundEffect introMusic;
         SoundEffectInstance introInstance;
 
+        SoundEffect roadSound;
+        SoundEffectInstance roadInstance;
+
+        SoundEffect crashSound;
+        SoundEffectInstance crashInstance;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -86,11 +92,16 @@ namespace Topic_1_5_Summative_Animation
             // TODO: use this.Content to load your game content here
             highwayTexture = Content.Load<Texture2D>("highway");
             trafficTexture = Content.Load<Texture2D>("traffic");
+            wreckTexture = Content.Load<Texture2D>("wreck");
             blackCarTexture = Content.Load<Texture2D>("blackCar");
             redCarTexture = Content.Load<Texture2D>("redCar");
             introFont = Content.Load<SpriteFont>("IntroFont");
             introMusic = Content.Load<SoundEffect>("IntroMusic");
+            roadSound = Content.Load<SoundEffect>("RoadSound");
+            crashSound = Content.Load<SoundEffect>("CrashSound");
             introInstance = introMusic.CreateInstance();
+            roadInstance = roadSound.CreateInstance();
+            crashInstance = crashSound.CreateInstance();
         }
 
         protected override void Update(GameTime gameTime)
@@ -104,6 +115,7 @@ namespace Topic_1_5_Summative_Animation
                 {
                     screen = Screen.Road;
                     introInstance.Stop();
+                    roadInstance.Play();
                 }
             }
             else if (screen == Screen.Road)
@@ -117,6 +129,12 @@ namespace Topic_1_5_Summative_Animation
                 redCarRect2.Y += (int)redCarSpeed.Y;
                 redCarRect3.Y += (int)redCarSpeed.Y;
                 redCarRect4.Y += (int)redCarSpeed.Y;
+                if (redCarRect4.Intersects(blackCarRect3))
+                {
+                    screen = Screen.End;
+                    roadInstance.Stop();
+                    crashInstance.Play();
+                }
             }
                 base.Update(gameTime);
         }
@@ -146,6 +164,11 @@ namespace Topic_1_5_Summative_Animation
                 _spriteBatch.Draw(redCarTexture, redCarRect2, Color.White);
                 _spriteBatch.Draw(redCarTexture, redCarRect3, Color.White);
                 _spriteBatch.Draw(redCarTexture, redCarRect4, Color.White);
+            }
+            else if (screen == Screen.End)
+            {
+                _spriteBatch.Draw(wreckTexture, window, Color.White);
+                _spriteBatch.DrawString(introFont, "CAR WRECK", new Vector2(265, 285), Color.WhiteSmoke);
             }
 
             _spriteBatch.End();
