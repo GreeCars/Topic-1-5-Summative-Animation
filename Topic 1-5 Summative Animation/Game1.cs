@@ -136,7 +136,9 @@ namespace Topic_1_5_Summative_Animation
                     crashInstance.Play();
                 }
             }
-                base.Update(gameTime);
+            else if (crashInstance.State == SoundState.Stopped)
+                Exit();
+            base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
