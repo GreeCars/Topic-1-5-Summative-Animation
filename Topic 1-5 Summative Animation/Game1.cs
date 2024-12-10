@@ -32,6 +32,11 @@ namespace Topic_1_5_Summative_Animation
         Rectangle redCarRect4;
         Vector2 redCarSpeed;
 
+        Texture2D blueCarTexture;
+        Rectangle blueCarRect1;
+        Rectangle blueCarRect2;
+        Vector2 blueCarSpeed;
+
         Texture2D highwayTexture;
 
         Texture2D trafficTexture;
@@ -75,6 +80,10 @@ namespace Topic_1_5_Summative_Animation
             redCarRect4 = new Rectangle(410, 2000, 100, 150);
             redCarSpeed = new Vector2(-3, -3);
 
+            blueCarRect1 = new Rectangle(260, -500, 160, 240);
+            blueCarRect2 = new Rectangle(140, -50, 160, 240);
+            blueCarSpeed = new Vector2(1, 1);
+
             window = new Rectangle(0, 0, 800, 600);
             _graphics.PreferredBackBufferWidth = window.Width;
             _graphics.PreferredBackBufferHeight = window.Height;
@@ -95,6 +104,7 @@ namespace Topic_1_5_Summative_Animation
             wreckTexture = Content.Load<Texture2D>("wreck");
             blackCarTexture = Content.Load<Texture2D>("blackCar");
             redCarTexture = Content.Load<Texture2D>("redCar");
+            blueCarTexture = Content.Load<Texture2D>("blueCar");
             introFont = Content.Load<SpriteFont>("IntroFont");
             introMusic = Content.Load<SoundEffect>("IntroMusic");
             roadSound = Content.Load<SoundEffect>("RoadSound");
@@ -129,6 +139,8 @@ namespace Topic_1_5_Summative_Animation
                 redCarRect2.Y += (int)redCarSpeed.Y;
                 redCarRect3.Y += (int)redCarSpeed.Y;
                 redCarRect4.Y += (int)redCarSpeed.Y;
+                blueCarRect1.Y += (int)blueCarSpeed.Y;
+                blueCarRect2.Y += (int)blueCarSpeed.Y;
                 if (redCarRect4.Intersects(blackCarRect3))
                 {
                     screen = Screen.End;
@@ -166,6 +178,8 @@ namespace Topic_1_5_Summative_Animation
                 _spriteBatch.Draw(redCarTexture, redCarRect2, Color.White);
                 _spriteBatch.Draw(redCarTexture, redCarRect3, Color.White);
                 _spriteBatch.Draw(redCarTexture, redCarRect4, Color.White);
+                _spriteBatch.Draw(blueCarTexture, blueCarRect1, Color.White);
+                _spriteBatch.Draw(blueCarTexture, blueCarRect2, Color.White);
             }
             else if (screen == Screen.End)
             {
